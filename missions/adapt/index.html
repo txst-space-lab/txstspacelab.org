@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADAPT &middot; Texas State University Space Lab</title>
+  <meta name="description" content="ADAPT (Autonomous Drag-based Adaptive Planning and Targeting) is a 6U CubeSat mission concept that learns in orbit to control its own trajectory using differential drag and reinforcement learning. Funded under the 2026 UNP Mission Concept program.">
+
+  <meta property="og:title" content="ADAPT &middot; Texas State University Space Lab">
+  <meta property="og:description" content="A CubeSat that learns to control its own orbit on its own — no propellant required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://txstspacelab.org/missions/adapt/">
+  <meta property="og:image" content="https://txstspacelab.org/images/mission-adapt.jpg">
+
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="/" class="brand" aria-label="Space Lab home">
+        <img src="/images/logo.png" alt="" class="brand-logo" aria-hidden="true">
+        <span class="brand-text">Space Lab</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/missions/" aria-current="page">Missions</a></li>
+          <li><a href="/team/">Team</a></li>
+          <li><a href="/news/">News</a></li>
+          <li><a href="/students/">Students</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="mission-hero">
+      <div class="container mission-hero-inner">
+        <p class="eyebrow"><a href="/missions/" style="color: inherit;">Missions</a> &middot; Active</p>
+        <span class="mission-status status-concept">Mission concept</span>
+        <h1 class="page-title">ADAPT</h1>
+        <p class="page-lede">Autonomous Drag-based Adaptive Planning and Targeting &mdash; a 6U CubeSat that learns in orbit to control its own trajectory using differential drag and reinforcement learning, with no onboard propellant. Funded under the 2026 UNP Mission Concept program.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <figure class="inline-figure" style="max-width: 920px; margin-left: auto; margin-right: auto;">
+          <img src="/images/adapt-mission-phases.jpg" alt="ADAPT mission diagram showing three operational phases over twelve weeks: Phase 1 calibration with scripted attitude maneuvers, Phase 2 goal-oriented autonomy where ground sets goals and the spacecraft plans maneuvers, and Phase 3 full autonomy where the spacecraft plans and executes maneuvers using a learned model.">
+          <figcaption>Three on-orbit phases progressing from supervised calibration to fully autonomous, propellant-free orbit control.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0; border-top: 0;">
+      <div class="container">
+        <div class="prose-narrow">
+          <h2>The problem</h2>
+          <p>Small satellites today rely on ground-built atmospheric models to predict drag &mdash; but real-world drag at orbit altitude can deviate from those models by tens of percent, depending on solar weather, geometry, and the satellite&rsquo;s own attitude. That mismatch makes precise, propellant-free maneuvers hard, and it forces operators to keep humans tightly in the loop.</p>
+
+          <h2>What ADAPT does</h2>
+          <p>ADAPT is a 6U CubeSat designed to learn its <em>own</em> drag response in orbit. Instead of using a static model uploaded from the ground, the spacecraft trains a small onboard neural network using its GPS-derived trajectory as ground truth &mdash; learning how attitude changes affect orbital evolution under the actual atmosphere it&rsquo;s flying through. Once the model is good enough, the spacecraft uses it to plan attitude-driven drag maneuvers and adjust its own orbit. No thrusters required.</p>
+
+          <h2>How it works: three phases</h2>
+          <p>The mission unfolds in three escalating phases of autonomy, each a few weeks long.</p>
+          <ul>
+            <li><strong>Phase 1 &mdash; Calibration.</strong> The spacecraft executes a pre-scripted sequence of attitude maneuvers, recording how each one perturbs its orbit. This data trains the initial onboard model.</li>
+            <li><strong>Phase 2 &mdash; Goal-oriented autonomy.</strong> Ground operators specify desired orbit adjustments. The onboard model decides which attitude maneuvers will achieve them, plans the sequence, and executes.</li>
+            <li><strong>Phase 3 &mdash; Full autonomy.</strong> The spacecraft plans and executes drag maneuvers on its own to maintain or modify its orbit, with no ground intervention.</li>
+          </ul>
+
+          <h2>Technical approach</h2>
+          <p>The control architecture uses reinforcement learning &mdash; specifically a teacher–student framework. A high-capacity <strong>teacher</strong> policy is trained on the ground using a high-fidelity orbital simulator (with realistic atmospheric variability, GPS noise, and sensor dropouts). A smaller <strong>student</strong> network, derived from the teacher and sized for the flight processor, runs onboard and is fine-tuned in flight using real GPS data as training labels.</p>
+          <p>Mission Concept phase deliverables include a validated simulation environment, a hardware-in-the-loop testbed using flight-representative embedded compute, characterizations of learning convergence and prediction-error bounds under uncertainty, and safety and authority limits for the on-orbit fine-tuning loop.</p>
+
+          <h2>Why it matters</h2>
+          <p>Most on-orbit AI to date has focused on perception &mdash; classifying images, filtering data, detecting anomalies. ADAPT pushes onboard learning into the much harder domain of <strong>guidance, navigation, and control</strong>, where stability, interpretability, and safety constraints are far more demanding. The methods, safety envelopes, and validation tools developed here lay the groundwork for future autonomous constellations, responsive Earth-observation fleets, and resilient space architectures relevant to both NASA and the Department of Defense.</p>
+
+          <h2>Team and program</h2>
+          <p>ADAPT is led by <strong>Evan Jellison</strong> (Principal Investigator, Lab Coordinator) with <strong>Dr. Blagoy Rangelov</strong> as Co-PI. The work is funded under the <strong>University Nanosatellite Program (UNP) Mission Concept 2026</strong>, awarded in March 2026. The Mission Concept phase will engage roughly 10&ndash;15 students per year across simulation development, embedded software, hardware-in-the-loop testing, and mission operations.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="/images/logo.png" alt="" class="brand-logo" aria-hidden="true">
+        <div>
+          <p class="footer-name">Texas State University Space Lab</p>
+          <p class="footer-affil">Department of Physics &middot; San Marcos, TX</p>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/missions/">Missions</a></li>
+          <li><a href="/team/">Team</a></li>
+          <li><a href="/news/">News</a></li>
+          <li><a href="/students/">Students</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-social">
+        <a href="https://github.com/txst-space-lab" aria-label="GitHub" rel="noopener external" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.9-.39.99 0 1.98.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/txstspacelab/" aria-label="Instagram" rel="noopener external" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="mailto:rangelov@txstate.edu" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="current-year">2026</span> Texas State University Space Lab</p>
+      <p><a href="https://www.txst.edu/physics.html" rel="external noopener" target="_blank">Department of Physics</a> &middot; <a href="https://www.txst.edu/" rel="external noopener" target="_blank">Texas State University</a></p>
+    </div>
+  </footer>
+
+  <script src="/js/script.js" defer></script>
+</body>
+</html>
