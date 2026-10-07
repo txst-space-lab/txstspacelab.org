@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Texas State University Space Lab//PROVES-Maia Watch Party//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:proves-maia-watch-party-20261013@txstspacelab.org
+DTSTAMP:20261007T170000Z
+DTSTART:20261013T100000Z
+DTEND:20261013T110000Z
+SUMMARY:PROVES-Maia Launch Watch Party
+LOCATION:Roy F. Mitte Building\, Room 3241\, 749 N. Comanche St.\, San Marc
+ os\, TX 78666
+DESCRIPTION:Watch Texas State University's first spacecraft launch to space
+ . Party starts 5:00 AM CT. Launch scheduled for 5:33 AM CT. Launch times c
+ an change: check https://txstspacelab.org/watch-party/ before you leave ho
+ me.
+URL:https://txstspacelab.org/watch-party/
+END:VEVENT
+END:VCALENDAR
