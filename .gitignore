@@ -12,3 +12,6 @@ Thumbs.db
 .cache/
 node_modules/
 *.log
+
+# Claude Code
+CLAUDE.md
